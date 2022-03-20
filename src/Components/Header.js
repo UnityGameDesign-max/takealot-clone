@@ -1,6 +1,10 @@
 import React from "react";
 import Logo from "../assets/takealot.png";
+import {HeartFill} from '@styled-icons/bootstrap/HeartFill'
 import styled from "styled-components";
+
+
+
 
 function Header() {
   return (
@@ -11,15 +15,40 @@ function Header() {
         <HeaderLink as="a" href="/">Sell on Takealot</HeaderLink>
       </NavBarLeft>
 
-      <NavBarRight></NavBarRight>
+      <NavBarRight>
+        <ul>
+          <HeaderLink>Login</HeaderLink>
+          <HeaderLink>Register</HeaderLink>
+          <HeaderLink>Orders</HeaderLink>
+          <HeaderLink>My Account</HeaderLink>
+          <WishListIcon as="a" href="/">
+            <RedZap />
+          </WishListIcon>
+        </ul>
+      </NavBarRight>
     </NavBar>
   );
 }
 
+const RedZap = styled(HeartFill)`
+  color: white;
+  width: 15px;
+`
+
+const WishListIcon = styled.a`
+  padding: 8px;
+  background-color: #f4697a;
+  border-radius: 50%;
+  &:hover{
+    background-color: #f4697a;
+  }
+`;
+
 const NavBar = styled.div`
   display: flex;
+  justify-content: space-between;
   margin: 0 auto;
-  padding: 20px 60px;
+  padding: 12px 60px;
   max-width: 1440px;
   background-color: white;
 `;
