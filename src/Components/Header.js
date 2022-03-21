@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../assets/takealot.png";
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill";
 import { CartFill } from "@styled-icons/bootstrap/CartFill";
+
 import styled from "styled-components";
 
 function Header() {
@@ -9,19 +10,18 @@ function Header() {
     <NavBar>
       <NavBarLeft>
         <HeaderLogo></HeaderLogo>
-        <HeaderLink as="a" href="/">
+        <HeaderLink as="a" href="/help">
           Help
         </HeaderLink>
-        <HeaderLink as="a" href="/">
+        <HeaderLink as="a" href="sell">
           Sell on Takealot
         </HeaderLink>
       </NavBarLeft>
-
       <NavBarRight>
         <ul>
-          <HeaderLink>Login</HeaderLink>
-          <HeaderLink>Register</HeaderLink>
-          <HeaderLink>Orders</HeaderLink>
+          <HeaderLink as="a" href="/login">Login</HeaderLink>
+          <HeaderLink as="a" href="/login">Register</HeaderLink>
+          <HeaderLink as="a" href="/login">Orders</HeaderLink>
           <HeaderLink>My Account</HeaderLink>
           <WishListIcon as="a" href="/">
             <FavIcon />
@@ -41,17 +41,21 @@ const FavIcon = styled(HeartFill)`
   width: 14px;
 `;
 
+
 const CartIcon = styled.div`
   display: flex;
   align-items: center;
-  padding: 7px 18px;
+  padding: 6px 16px;
   text-decoration: none;
   background-color: #1c8644;
   margin-right: 10px;
   border-radius: 17px;
+  &:hover{
+    background-color: #114f28;
+  }
 `;
 const BasketIcon = styled(CartFill)`
-  width: 15px;
+  width: 13px;
   margin-right: 4px;
   color: white;
 `;
@@ -70,7 +74,7 @@ const WishListIcon = styled.a`
   margin-right: 10px;
   border-radius: 50%;
   &:hover {
-    background-color: #f4697a;
+    background-color:#d95767;
   }
 `;
 
@@ -78,8 +82,9 @@ const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 16px 60px;
-  max-width: 1540px;
+  width: 80%;
+  padding: 16px 0;
+  max-width: 1440px;
   background-color: white;
 `;
 
