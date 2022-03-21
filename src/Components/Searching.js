@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { ArrowIosDownward } from "@styled-icons/evaicons-solid/ArrowIosDownward";
-import {Search} from '@styled-icons/boxicons-regular/Search'
+import { Search } from "@styled-icons/boxicons-regular/Search";
+import { headerDepartments } from "../utilis/departments";
+import { selectorDepartments } from "../utilis/departments";
 
 function Searching() {
   return (
@@ -13,19 +15,24 @@ function Searching() {
             <DownArrow></DownArrow>
           </Header>
         </Departments>
-        <SearchProduct>
-          <SearchBar placeholder="Search for products, brands...."></SearchBar>
-          <DropDownSearch>
-            <option>All Departments</option>
-            <option>Baby & Toddler</option>
-            <option>Beauty</option>
-            <option>Books</option>
-            <option>Cameras</option>
-          </DropDownSearch>
-          <SearchButton>
-            <SearchIcon />
-          </SearchButton>
-        </SearchProduct>
+        <SearchRight>
+          <SearchProduct>
+            <SearchBar placeholder="Search for products, brands...."></SearchBar>
+            <DropDownSearch>
+              {headerDepartments.map(item => {
+                return <option key={item.id}>{item.name}</option>;
+              })}
+            </DropDownSearch>
+            <SearchButton>
+              <SearchIcon />
+            </SearchButton>
+          </SearchProduct>
+          <SearchDepartment>
+            {selectorDepartments.map((item)=>{
+              return <Button key={item.id}>{item.name}</Button>
+            })}
+          </SearchDepartment>
+        </SearchRight>
       </SearchItems>
     </SearchContainer>
   );
@@ -35,6 +42,23 @@ const SearchContainer = styled.div`
     width : 100%;
     padding 13px 0px;
     background-color: #0b79bf;
+`;
+
+const Button = styled.button`
+  border: none;
+  padding: 7px 18px;
+  border-radius: 2px;
+  background-color: #f4f4f4;
+  border-left: 0.8px solid grey;
+  cursor: pointer;
+  &:hover {
+    background-color: #e3e3e3;
+  }
+`;
+
+const SearchDepartment = styled.div`
+  display: flex;
+  width: 100%;
 `;
 
 const DropDownSearch = styled.select`
@@ -49,11 +73,16 @@ const DropDownSearch = styled.select`
   font-size: 13px;
 `;
 
+const SearchRight = styled.div`
+  width: 85%;
+`;
+
 const SearchBar = styled.input`
   border: none;
   width: 81%;
   font-weight: 400;
   outline-width: 0;
+  padding-left: 10px;
 `;
 
 const SearchButton = styled.button`
@@ -67,8 +96,8 @@ const SearchButton = styled.button`
 `;
 
 const SearchProduct = styled.form`
-  width: 85%;
-  display:flex;
+  margin-bottom: 10px;
+  display: flex;
 `;
 
 const DownArrow = styled(ArrowIosDownward)`
@@ -80,14 +109,15 @@ const SearchIcon = styled(Search)`
   color: white;
 `;
 const Departments = styled.div`
- width: 18%;
+  width: 18%;
+  margin-top: 7px;
 `;
 
 const Header = styled.a`
   color: white;
   font-size: 14px;
   background-color: #4d4d4f;
-  padding: 7px 10px;
+  padding: 8px 10px;
   border-radius: 3px;
   text-decoration: none;
   &:hover {
@@ -97,7 +127,7 @@ const Header = styled.a`
 
 const SearchItems = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   width: 80%;
   margin: 0 auto;
   max-width: 1440px;
