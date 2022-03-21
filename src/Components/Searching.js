@@ -16,6 +16,7 @@ function Searching() {
         <SearchProduct>
           <SearchBar placeholder="Search for products, brands...."></SearchBar>
           <DropDownSearch>
+            <option>All Departments</option>
             <option>Baby & Toddler</option>
             <option>Beauty</option>
             <option>Books</option>
@@ -37,16 +38,20 @@ const SearchContainer = styled.div`
 `;
 
 const DropDownSearch = styled.select`
-  width: 20%;
+  background-color: #f4f4f4;
+  width: 14%;
   border: none;
   padding-inline: 3px;
+  box-shadow: none;
+  transition: background-color 300ms;
   font-weight: 400;
+  outline-width: 0;
   font-size: 13px;
 `;
 
 const SearchBar = styled.input`
   border: none;
-  width: 75%;
+  width: 81%;
   font-weight: 400;
   outline-width: 0;
 `;
@@ -75,7 +80,7 @@ const SearchIcon = styled(Search)`
   color: white;
 `;
 const Departments = styled.div`
- width: 15%;
+ width: 18%;
 `;
 
 const Header = styled.a`
