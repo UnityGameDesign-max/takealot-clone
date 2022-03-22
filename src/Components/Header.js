@@ -2,7 +2,8 @@ import React from "react";
 import Logo from "../assets/takealot.png";
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill";
 import { CartFill } from "@styled-icons/bootstrap/CartFill";
-
+import {navigationListRight} from "../utilis/navItems"
+import {navigationListLeft} from "../utilis/navItems"
 import styled from "styled-components";
 
 function Header() {
@@ -10,18 +11,15 @@ function Header() {
     <NavBar>
       <NavBarLeft>
         <HeaderLogo></HeaderLogo>
-        <HeaderLink as="a" href="/help">
-          Help
-        </HeaderLink>
-        <HeaderLink as="a" href="sell">
-          Sell on Takealot
-        </HeaderLink>
+        {navigationListLeft.map((item) =>{
+          return <HeaderLink as="a" href={item.location} key={item.id}>{item.name}</HeaderLink>
+        })}
       </NavBarLeft>
       <NavBarRight>
         <ul>
-          <HeaderLink as="a" href="/login">Login</HeaderLink>
-          <HeaderLink as="a" href="/login">Register</HeaderLink>
-          <HeaderLink as="a" href="/login">Orders</HeaderLink>
+          {navigationListRight.map((item) =>{
+            return <HeaderLink as="a" key={item.id} href={item.location}>{item.name}</HeaderLink>
+          })}
           <HeaderLink>My Account</HeaderLink>
           <WishListIcon as="a" href="/">
             <FavIcon />
