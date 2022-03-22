@@ -1,6 +1,5 @@
 const { Client } = require("pg");
-const { configuration } = require("./configuration");
-const queryObject = require("./queryObject");
+const { configuration } = require("./config");
 
 const client = new Client(configuration);
 client.connect((err) => {
@@ -9,7 +8,7 @@ client.connect((err) => {
 
 const createTable = () => {
   client.query(
-    "CREATE TABLE IF NOT EXISTS Visitors(ID SERIAL NOT NULL PRIMARY KEY,fullName varchar(50) NOT NULL,Age INT NOT NULL,dateOfVisit DATE NOT NULL,timeOfVisit TIME NOT NULL,assistantName VARCHAR(50) NOT NULL,comments VARCHAR(200) NOT NULL)",
+    "CREATE TABLE IF NOT EXISTS Customers(ID SERIAL NOT NULL PRIMARY KEY,fullName varchar(50) NOT NULL,Age INT NOT NULL,email varchar(50) NOT NULL,newsLetter)",
     (err) => {
       if (err) {
         throw Error(err.message);
