@@ -8,6 +8,7 @@ const {
   registerCustomer,
   createProductsTable,
   addProducts,
+  getAllProducts,
 } = require("./src/db");
 
 app.use(express.urlencoded({ extended: true }));
@@ -44,6 +45,10 @@ app.post("/addProducts", (req, res) => {
     rating,
     reviews
   ).then((data) => res.send(data.rows));
+});
+
+app.get("/getAllProducts", (req, res) => {
+  getAllProducts().then((data) => res.send(data.rows));
 });
 
 app.listen(port, () => {

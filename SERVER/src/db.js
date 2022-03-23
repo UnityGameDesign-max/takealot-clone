@@ -12,7 +12,7 @@ const createCustomerTable = () => {
     (err) => {
       if (err) {
         throw Error(err.message);
-      } 
+      }
       setTimeout(() => {
         client.end();
       }, 6000000);
@@ -26,7 +26,7 @@ const createProductsTable = () => {
     (err) => {
       if (err) {
         throw Error(err.message);
-      } 
+      }
       setTimeout(() => {
         client.end();
       }, 6000000);
@@ -45,12 +45,39 @@ const registerCustomer = async (firstName, lastName, mobileNumber, email) => {
   }
 };
 
-const addProducts = async (description, imageLink, category, price,sale,percentageOff,rating,reviews) => {
+const addProducts = async (
+  description,
+  imageLink,
+  category,
+  price,
+  sale,
+  percentageOff,
+  rating,
+  reviews
+) => {
   try {
     return await client.query(
       "INSERT INTO Products(description, imageLink, category, price,sale,percentageOff,rating,reviews) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
-      [description, imageLink, category, price,sale,percentageOff,rating,reviews]
+      [
+        description,
+        imageLink,
+        category,
+        price,
+        sale,
+        percentageOff,
+        rating,
+        reviews,
+      ]
     );
+  } catch (err) {
+    throw Error(err.message);
+  }
+};
+
+const getAllProducts = async () => {
+  try {
+    const result = await client.query("SELECT * FROM Products");
+    return result;
   } catch (err) {
     throw Error(err.message);
   }
@@ -60,5 +87,6 @@ module.exports = {
   createCustomerTable,
   createProductsTable,
   registerCustomer,
-  addProducts
+  addProducts,
+  getAllProducts,
 };
