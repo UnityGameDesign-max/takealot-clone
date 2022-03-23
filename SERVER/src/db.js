@@ -1,7 +1,6 @@
 const { Client } = require("pg");
 const { configuration } = require("./config");
 
-// console.log(configuration);
 const client = new Client(configuration);
 client.connect((err) => {
   if (err) throw Error(err.message);
@@ -49,8 +48,8 @@ const registerCustomer = async (firstName, lastName, mobileNumber, email) => {
 const addProducts = async (description, imageLink, category, price,sale,percentageOff,rating,reviews) => {
   try {
     return await client.query(
-      "INSERT INTO Customers(firstName, lastName, mobileNumber, email) VALUES($1,$2,$3,$4) RETURNING *",
-      [firstName, lastName, mobileNumber, email]
+      "INSERT INTO Products(description, imageLink, category, price,sale,percentageOff,rating,reviews) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
+      [description, imageLink, category, price,sale,percentageOff,rating,reviews]
     );
   } catch (err) {
     throw Error(err.message);
@@ -60,5 +59,6 @@ const addProducts = async (description, imageLink, category, price,sale,percenta
 module.exports = {
   createCustomerTable,
   createProductsTable,
-  registerCustomer
+  registerCustomer,
+  addProducts
 };
