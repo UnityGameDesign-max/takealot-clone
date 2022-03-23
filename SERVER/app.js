@@ -3,17 +3,21 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const port = 5000;
+const { createTable, registerCustomer } = require("./src/db");
 
+createTable();
 app.use(express.urlencoded({ extended: true }));
 
-router.post("/account/register", (req, res) => {
+app.post("/account/register", (req, res) => {
   const { firstName, lastName, mobileNumber, email } = req.body;
-
-  registerCustomer(firstName, lastName, email, mobileNumber).then((data) =>
+  // console.log(firstName, lastName, mobileNumber, email);
+  registerCustomer(firstName, lastName, mobileNumber, email).then((data) =>
     res.send(data.rows)
   );
 });
 
-app.listen(5000, () => {
-  "app listening on port 5000";
+
+
+app.listen(port, () => {
+  console.log(`app listening on port: ${port}`);
 });
