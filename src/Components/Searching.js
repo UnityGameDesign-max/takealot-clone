@@ -47,6 +47,7 @@ const SearchContainer = styled.div`
 const Button = styled.button`
   border: none;
   padding: 7px 18px;
+  color: #333;
   border-radius: 2px;
   background-color: #f4f4f4;
   border-left: 0.8px solid grey;
