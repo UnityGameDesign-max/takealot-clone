@@ -16,24 +16,25 @@ app.use(express.urlencoded({ extended: true }));
 app.post("/account/register", (req, res) => {
   createCustomerTable();
 
-    let customer;
+  let customer;
 
   if (!req.body.firstName) {
     customer = JSON.parse(Object.keys(req.body)[0]);
   } else {
     customer = req.body;
   }
-  const { firstName, lastName, mobileNumber, email } = customer;
+ 
+  const { firstName, lastName, mobileNumber, email, password } = customer;
 
-  registerCustomer(firstName, lastName, mobileNumber, email).then((data) =>
-    res.send(data.rows)
+  registerCustomer(firstName, lastName, mobileNumber, email, password).then(
+    (data) => res.send(data.rows)
   );
 });
 
 app.post("/addProducts", (req, res) => {
   createProductsTable();
 
-  let product
+  let product;
 
   if (!req.body.description) {
     product = JSON.parse(Object.keys(req.body)[0]);
