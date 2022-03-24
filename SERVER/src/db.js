@@ -89,7 +89,20 @@ const getAllProducts = async () => {
   }
 };
 
+const getProductsCategory = async (category) => {
+  try {
+    const result = await client.query(
+      "SELECT * FROM Products WHERE category = $1",
+      [category]
+    );
+    return result;
+  } catch (err) {
+    throw Error(err.message);
+  }
+};
+
 module.exports = {
+  getProductsCategory,
   createCustomerTable,
   createProductsTable,
   registerCustomer,

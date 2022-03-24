@@ -9,6 +9,7 @@ const {
   createProductsTable,
   addProducts,
   getAllProducts,
+  getProductsCategory,
 } = require("./src/db");
 
 app.use(express.urlencoded({ extended: true }));
@@ -23,7 +24,7 @@ app.post("/account/register", (req, res) => {
   } else {
     customer = req.body;
   }
- 
+
   const { firstName, lastName, mobileNumber, email, password } = customer;
 
   registerCustomer(firstName, lastName, mobileNumber, email, password).then(
@@ -65,8 +66,12 @@ app.post("/addProducts", (req, res) => {
   ).then((data) => res.send(data.rows));
 });
 
-app.get("/getAllProducts", (req, res) => {
+app.get("/getProducts", (req, res) => {
   getAllProducts().then((data) => res.send(data.rows));
+});
+
+app.get("/getProducts/:id", (req, res) => {
+  getProductsCategory(req.params.id).then((data) => res.send(data.rows));
 });
 
 app.listen(port, () => {
