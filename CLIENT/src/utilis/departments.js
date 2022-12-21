@@ -28,22 +28,27 @@ export const selectorDepartments = [
         location: "/"
     },
     {
-        name: "Exclusive To Takealot",
+        name: "Loadshedding",
         location: "/"
     },
     {
-        name: "Fashion Outlet"
+        name: "Summer",
+        location: "/"
     },
     {
-        name: "Handmade"
+        name: "Handmade",
+        location: "/"
     },
     {
-        name: "Deals & Promotions"
+        name: "Christmas",
+        location: "/"
     },
     {
-        name: "Clearance"
+        name: "Clearance",
+        location: "/"
     },
     {
-        name: "Brands Store"
+        name: "Brands Store",
+        location: "/"
     }
 ]

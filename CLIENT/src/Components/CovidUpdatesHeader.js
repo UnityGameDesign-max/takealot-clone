@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 function CovidUpdatesHeader() {
+  const [showCovidSite, setShowCovidSite] = useState(true);
 
     const handleClose = (event) => {
-        event.preventDefault();
-        
+      event.preventDefault();
+      setShowCovidSite(!showCovidSite);
     }
+
   return (
-    <Header>
+    showCovidSite &&
+      <Header>
         <span>Stay informed!</span> Visit the SA Department of Health's website for COVID-19
-        updates: <a href="https://www.sacoronavirus.co.za">www.sacoronavirus.co.za</a>
-        <Close onClick={handleClose}>&times;</Close>
-    </Header>
+          updates: 
+          <a href="https://www.sacoronavirus.co.za" rel="noreferrer" target="_blank">
+            www.sacoronavirus.co.za
+          </a>
+          <Close onClick={handleClose}>&times;</Close>
+      </Header>
   );
 }
 
 const Close = styled.span`
-    float:right;
-    cursor: pointer;
-    font-size:17px;
-    margin-right: 10px;
-`
+  float:right;
+  cursor: pointer;
+  font-size:17px;
+  margin-right: 10px;
+`;
 
 const Header = styled.div`
   background-color: #0b79bf;

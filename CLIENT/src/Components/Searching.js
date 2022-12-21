@@ -29,7 +29,7 @@ function Searching() {
           </SearchProduct>
           <SearchDepartment>
             {selectorDepartments.map((item)=>{
-              return <Button key={item.id}>{item.name}</Button>
+              return <NavigationLink href={item.location} key={item.id}>{item.name}</NavigationLink>
             })}
           </SearchDepartment>
         </SearchRight>
@@ -44,12 +44,13 @@ const SearchContainer = styled.div`
     background-color: #0b79bf;
 `;
 
-const Button = styled.button`
+const NavigationLink = styled.a`
   border: none;
-  padding: 7px 18px;
-  color: #333;
-  border-radius: 2px;
+  padding: 3px 18px;
+  color: #333333;
   background-color: #f4f4f4;
+  font-size: 14px;
+  text-decoration: none;
   border-left: 0.8px solid grey;
   cursor: pointer;
   &:hover {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Logo from "../assets/takealot.png";
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill";
 import { CartFill } from "@styled-icons/bootstrap/CartFill";
@@ -9,7 +9,7 @@ import CovidUpdatesHeader from "./CovidUpdatesHeader";
 
 function Header() {
   return (
-    <>
+    <Fragment>
       <CovidUpdatesHeader />
       <NavBar>
         <NavBarLeft>
@@ -42,7 +42,7 @@ function Header() {
           </ul>
         </NavBarRight>
       </NavBar>
-    </>
+    </Fragment>
   );
 }
 
