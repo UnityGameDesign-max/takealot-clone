@@ -1,37 +1,42 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Logo from "../assets/takealot.png";
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill";
 import { CartFill } from "@styled-icons/bootstrap/CartFill";
 import { navigationListRight } from "../utilis/navItems";
 import { navigationListLeft } from "../utilis/navItems";
+import Login from './auth/Login';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import CovidUpdatesHeader from "./CovidUpdatesHeader";
+import AuthenticationModal from './auth/AuthenticationModal';
 
 function Header() {
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleCloseModal = () => setOpenModal(false);
+
+  const handleLogin = () => {
+    setOpenModal(true);
+  }
   return (
     <Fragment>
       <CovidUpdatesHeader />
       <NavBar>
         <NavBarLeft>
           <HeaderLogo></HeaderLogo>
-          {navigationListLeft.map(item => {
-            return (
-              <HeaderLink as="a" href={item.location} key={item.id}>
-                {item.name}
-              </HeaderLink>
-            );
-          })}
+          {navigationListLeft.map(item => (
+            <HeaderLink to={item.location} key={item.id}>
+              {item.name}
+            </HeaderLink>
+          ))}
         </NavBarLeft>
         <NavBarRight>
           <ul>
-            {navigationListRight.map(item => {
-              return (
-                <HeaderLink as="a" key={item.id} href={item.location}>
-                  {item.name}
-                </HeaderLink>
-              );
-            })}
-            <HeaderLink>My Account</HeaderLink>
+            <HeaderLink onClick={handleLogin} to='/'>Login</HeaderLink>
+            <HeaderLink to='/'>Register</HeaderLink>
+            <HeaderLink to='/'>Orders</HeaderLink>
+            <HeaderLink to="/account">My Account</HeaderLink>
             <WishListIcon as="a" href="/">
               <FavIcon />
             </WishListIcon>
@@ -42,6 +47,13 @@ function Header() {
           </ul>
         </NavBarRight>
       </NavBar>
+      <AuthenticationModal 
+        openModal={openModal}
+        handleCloseModal={handleCloseModal}
+        modalTitle='Login'
+        modalTextFields={<Login />}
+        modalButtonText={'Login'}
+      />
     </Fragment>
   );
 }
@@ -97,7 +109,7 @@ const NavBar = styled.div`
   background-color: white;
 `;
 
-const HeaderLink = styled.a`
+const HeaderLink = styled(Link)`
   font-size: 13px;
   font-weight: 300;
   margin-inline: 17px;

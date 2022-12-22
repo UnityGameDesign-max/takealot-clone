@@ -1,10 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 import SimpleImageSlider from "react-simple-image-slider";
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import "../styles/sliders.css";
 import 'swiper/css';
 
 
@@ -28,7 +32,7 @@ function HomeSpecials() {
           />
           <FeaturedBrands>
             <FeaturedBrandText>Featured Brands</FeaturedBrandText>
-            
+        
           </FeaturedBrands>
         </Sliders>
        
@@ -44,8 +48,6 @@ function HomeSpecials() {
             <DezemberImage width={'100%'} src="https://tpc.googlesyndication.com/simgad/5289936977719097682?" alt="dezember"></DezemberImage>
           </DecemberSpecial>
         </SpecialOrderingContainer>
-
-        
     </HomeSpecialContainer>
   )
 }

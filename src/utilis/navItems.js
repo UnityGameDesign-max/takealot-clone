@@ -1,7 +1,7 @@
 export const navigationListRight = [
     {
         name: "Login",
-        location: "/login"
+        location: "/login",
     },
     {
         name: "Register",
