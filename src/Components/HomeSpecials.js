@@ -16,7 +16,7 @@ function HomeSpecials() {
     const IMAGE_SLIDES = [
         {url: "https://tpc.googlesyndication.com/simgad/8080339775404773055?"},
         {url: "https://tpc.googlesyndication.com/simgad/8380082073826093288?"},
-        {url: "https://tpc.googlesyndication.com/simgad/13938087522604681922?"}
+        {url: "https://tpc.googlesyndication.com/simgad/15417026208848844066?"}
     ]
   return (
     <HomeSpecialContainer>

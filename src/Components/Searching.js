@@ -90,11 +90,11 @@ const SearchBar = styled.input`
 const SearchButton = styled.button`
   border: none;
   width: 4%;
-  padding-block: 7px;
+  padding-block: 7.1px;
   padding-inline: 13px;
   cursor: pointer;
   background-color: #4d4d4f;
-  border-radius: 3px;
+  border-radius: 2px;
 `;
 
 const SearchProduct = styled.form`
