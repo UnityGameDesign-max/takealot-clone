@@ -9,29 +9,19 @@ import { signIn } from '../../services/firebaseAuth';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Modal } from '@mui/material';
 import LoadingBackDrop from '../LoadingBackDrop';
+import { boxModalStyle } from './authStyles';
 
 
-const boxModalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    height: 400,
-    bgcolor: 'background.paper',
-    borderRadius: 1,
-    boxShadow: 24,
-    paddingInline: 4,
-    paddingBlock: 2
-  };
-
-function Login({openModal, setOpenModal}){
+function Login({openModal, setOpenModal, setOpenRegisterModal}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
    
     const handleCloseModal = () => setOpenModal(!openModal);
-
+    const handleRegisterModal = () => {
+        setOpenModal(!openModal);
+        setOpenRegisterModal(openModal);
+    }
     const handleSignIn = () => {
         setIsLoading(true);
         signIn(email, password)
@@ -48,7 +38,7 @@ function Login({openModal, setOpenModal}){
     const LoginField = (
         <Fragment>
             <Box sx={boxModalStyle}>
-                <CloseIcon onClick={handleCloseModal} sx={{float: 'right', cursor: 'pointer' , mt: 2.3}} />
+                <CloseIcon color='primary' onClick={handleCloseModal} sx={{float: 'right', cursor: 'pointer' , mt: 2.3}} />
                 <ModalTitle>Login</ModalTitle>
                 <TextField
                     id="standard-basic"
@@ -81,7 +71,7 @@ function Login({openModal, setOpenModal}){
                 <AuthButton onClick={handleSignIn}>Login</AuthButton>
                 <LinkContainer>
                     <LinkQuestion>New to TakeAlot-clone?</LinkQuestion>
-                    <LinkToAuth onClick={handleCloseModal}>Register</LinkToAuth>
+                    <LinkToAuth onClick={handleRegisterModal}>Register</LinkToAuth>
                 </LinkContainer>
             </Box>
         </Fragment>

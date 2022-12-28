@@ -7,7 +7,7 @@ import Login from './auth/Login';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import CovidUpdatesHeader from "./CovidUpdatesHeader";
-import AuthenticationModal from './auth/AuthenticationModal';
+import RegisterUser from "./auth/RegisterUser";
 
 
 function Header() {
@@ -15,9 +15,6 @@ function Header() {
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
 
-  const handleLoginCloseModal = () => setOpenLoginModal(false);
-  const handleRegisterCloseModal = () => setOpenRegisterModal(false);
- 
   return (
     <Fragment>
       <CovidUpdatesHeader />
@@ -46,16 +43,15 @@ function Header() {
           </ul>
         </NavBarRight>
       </NavBar>
-      <Login openModal={openLoginModal} setOpenModal={setOpenLoginModal}/>
-
-      <AuthenticationModal 
-        openModal={openRegisterModal}
-        handleCloseModal={handleRegisterCloseModal}
-        modalTitle='Register'
-        modalTextFields={<Login />}
-        modalButtonText={'Register'}
-        typeOfAuthQuestion={'Already have an account?'}
-        typeOfAuthLink={'Login'}
+      <Login 
+        openModal={openLoginModal} 
+        setOpenRegisterModal={setOpenRegisterModal}
+        setOpenModal={setOpenLoginModal}
+      />
+      <RegisterUser 
+        setOpenLoginModal={setOpenLoginModal} 
+        openModal={openRegisterModal} 
+        setOpenModal={setOpenRegisterModal}
       />
     </Fragment>
   );

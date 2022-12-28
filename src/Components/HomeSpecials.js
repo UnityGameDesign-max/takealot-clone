@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "../styles/sliders.css";
-import 'swiper/css';
+import 'swiper/scss';
 
 
 function HomeSpecials() {
@@ -32,7 +32,7 @@ function HomeSpecials() {
           />
           <FeaturedBrands>
             <FeaturedBrandText>Featured Brands</FeaturedBrandText>
-        
+           
           </FeaturedBrands>
         </Sliders>
        

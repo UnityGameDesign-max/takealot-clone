@@ -7,6 +7,7 @@ function LoadingBackDrop({openBackDrop}) {
     <Backdrop
         sx={{ 
             color: '#0b79bf',
+            backgroundColor: "rgb(240,230,0,0.4)",
             zIndex: (theme) => theme.zIndex.drawer - 1,
             position: 'absolute',
             top: '0',
