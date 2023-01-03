@@ -28,10 +28,12 @@ function Login({openModal, setOpenModal, setOpenRegisterModal}){
             .then((userCredential) =>{
                 setIsLoading(false);
                 const user = userCredential.user
+                console.log(user);
                 handleCloseModal();
             }).catch((error) => {
                 setIsLoading(false);
                 const errorMessage = error.message;
+                console.log(errorMessage)
             })
     }
 

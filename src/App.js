@@ -5,6 +5,7 @@ import HomeSpecials from './Components/HomeSpecials';
 import Searching from './Components/Searching';
 import {  BrowserRouter as Router , Route , Routes} from "react-router-dom";
 import AuthenticationModal from './Components/auth/AuthenticationModal';
+import ProductCategory from './Components/products/ProductCategory';
 import "swiper/css/bundle";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Header/>
             <Searching />
             <HomeSpecials />
+            <ProductCategory />
           </React.Fragment>
           } 
         />

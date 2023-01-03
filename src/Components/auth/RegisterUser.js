@@ -27,10 +27,13 @@ function RegisterUser({openModal, setOpenModal, setOpenLoginModal}) {
     signUp(email, password)
       .then((userCredentials) => {
         setIsLoading(false);
+        const user = userCredentials.user;
+        console.log(user)
         handleCloseModal();
       }).catch((error) => {
         setIsLoading(false);
         const errorMessage = error.message;
+        console.log(errorMessage);
       });
 
   }

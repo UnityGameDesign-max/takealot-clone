@@ -32,7 +32,7 @@ function HomeSpecials() {
           />
           <FeaturedBrands>
             <FeaturedBrandText>Featured Brands</FeaturedBrandText>
-           
+            
           </FeaturedBrands>
         </Sliders>
        
@@ -120,5 +120,7 @@ const HomeSpecialContainer = styled.div`
   justify-content: center;
   margin: 0 auto;
   padding: 22px 20px;
+  height: 470px;
+  background-color: white;
 `;
 export default HomeSpecials;
