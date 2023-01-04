@@ -52,7 +52,7 @@ function HomeSpecials() {
   )
 }
 
-const DecemberSpecial = styled.div`
+export const DecemberSpecial = styled.div`
   border: 1px solid lightGrey;
   margin-top: 12px;
   padding: 2.3px;

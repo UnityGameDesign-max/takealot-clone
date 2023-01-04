@@ -10,6 +10,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Modal } from '@mui/material';
 import LoadingBackDrop from '../LoadingBackDrop';
 import { boxModalStyle } from './authStyles';
+import { ERROR_LOGIN_MESSAGE, RegistrationToastObj } from '../../utilis/constants';
+import { toast } from 'react-toastify';
 
 
 function Login({openModal, setOpenModal, setOpenRegisterModal}){
@@ -25,15 +27,12 @@ function Login({openModal, setOpenModal, setOpenRegisterModal}){
     const handleSignIn = () => {
         setIsLoading(true);
         signIn(email, password)
-            .then((userCredential) =>{
+            .then(() =>{
                 setIsLoading(false);
-                const user = userCredential.user
-                console.log(user);
                 handleCloseModal();
             }).catch((error) => {
                 setIsLoading(false);
-                const errorMessage = error.message;
-                console.log(errorMessage)
+                toast.error(ERROR_LOGIN_MESSAGE, RegistrationToastObj)
             })
     }
 

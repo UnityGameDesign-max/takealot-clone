@@ -25,7 +25,7 @@ const ProductCardContainer = styled.div`
     background-color: #fff;
     margin-bottom: 10px;
     margin-right: 15px;
-    width: 210px;
+    width: 180px;
 `;
 const Rate = styled.span`
     color: #4d4d4f;
@@ -48,7 +48,7 @@ const PriceContainer = styled.div`
 
 const ProductDescription = styled.p`
     color: #4d4d4f;
-    width: 200px;
+    width: 180px;
 `;
 const Ratings = styled.div`
     display: flex;

@@ -11,6 +11,8 @@ import { signUp } from '../../services/firebaseAuth';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Modal } from '@mui/material';
 import LoadingBackDrop from '../LoadingBackDrop';
+import {  toast } from 'react-toastify';
+import { ERROR_REGISTRATION_MESSAGE, RegistrationToastObj, SUCCESS_REGISTRATION_MESSAGE } from '../../utilis/constants';
 
 function RegisterUser({openModal, setOpenModal, setOpenLoginModal}) {
   const [email, setEmail] = useState('');
@@ -25,15 +27,14 @@ function RegisterUser({openModal, setOpenModal, setOpenLoginModal}) {
   const handleSignUp = () => {
     setIsLoading(true);
     signUp(email, password)
-      .then((userCredentials) => {
+      .then(() => {
         setIsLoading(false);
-        const user = userCredentials.user;
-        console.log(user)
+        toast.success(SUCCESS_REGISTRATION_MESSAGE,
+        RegistrationToastObj)
         handleCloseModal();
-      }).catch((error) => {
+      }).catch(() => {
         setIsLoading(false);
-        const errorMessage = error.message;
-        console.log(errorMessage);
+        toast.error(ERROR_REGISTRATION_MESSAGE, RegistrationToastObj)
       });
 
   }
