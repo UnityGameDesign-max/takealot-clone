@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { getProductsByCategory } from '../../services/products-service';
 import Skeleton from '@mui/material/Skeleton';
 import ProductCard from './ProductCard';
+import { Link } from 'react-router-dom';
 
 function ProductCategory() {
 
@@ -24,13 +25,15 @@ function ProductCategory() {
         <CategoryTitle>Recommended For You</CategoryTitle>
         <ProductCardItems>
           {clothing.length > 0 ? clothing.map((item) => (
-            <ProductCard 
-              image={item.image} 
-              description={item.title} 
-              price={item.price} 
-              rating={item.rating.rate} 
-              count={item.rating.count}
-            />
+            <LinkProduct to={`/${item.category}/${item.id}`}>
+              <ProductCard 
+                image={item.image} 
+                description={item.title} 
+                price={item.price} 
+                rating={item.rating.rate} 
+                count={item.rating.count}
+              />
+            </LinkProduct>
           )) : 
           <SkeletonContainer>
             <Skeleton variant='text' height={90}/>
@@ -51,13 +54,15 @@ function ProductCategory() {
         <CategoryTitle>Electronics</CategoryTitle>
         <ProductCardItems>
           {electronics.length > 0 ? electronics.map(item => (
-            <ProductCard 
-              image={item.image} 
-              description={item.title} 
-              price={item.price} 
-              rating={item.rating.rate} 
-              count={item.rating.count}
-            />
+            <LinkProduct to={`/${item.category}/${item.id}`}>
+              <ProductCard 
+                image={item.image} 
+                description={item.title} 
+                price={item.price} 
+                rating={item.rating.rate} 
+                count={item.rating.count}
+              />
+            </LinkProduct>
           )) 
           : 
             <SkeletonContainer>
@@ -77,7 +82,6 @@ function ProductCategory() {
          
         </ProductCardItems>
       </ProductCategoryItem>
-      
     </ProductCategoryContainer>
   )
 }
@@ -100,7 +104,10 @@ const SkeletonContainer = styled.div`
   background-color: #fff;
   padding: 12px 10px;
 `;
-
+const LinkProduct = styled(Link)`
+  text-decoration: none;
+  color: black;
+`
 const SkeletonAdContainer = styled.div`
   background-color: #fff;
   padding: 12px 10px;
