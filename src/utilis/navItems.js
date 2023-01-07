@@ -16,10 +16,10 @@ export const navigationListRight = [
 export const navigationListLeft = [
     {
         name: "Help",
-        location: "/help"
+        location: "#"
     },
     {
         name: "Sell on Takealot",
-        location: "/sell"
+        location: "#"
     }
 ]
