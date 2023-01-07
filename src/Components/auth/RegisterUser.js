@@ -1,4 +1,3 @@
-
 import { Fragment, useState } from 'react';
 import { boxModalStyle } from './authStyles';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Modal } from '@mui/material';
 import LoadingBackDrop from '../LoadingBackDrop';
 import {  toast } from 'react-toastify';
-import { ERROR_REGISTRATION_MESSAGE, RegistrationToastObj, SUCCESS_REGISTRATION_MESSAGE } from '../../utilis/constants';
+import {  RegistrationToastObj, SUCCESS_REGISTRATION_MESSAGE } from '../../utilis/constants';
 
 function RegisterUser({openModal, setOpenModal, setOpenLoginModal}) {
   const [email, setEmail] = useState('');
@@ -29,14 +28,13 @@ function RegisterUser({openModal, setOpenModal, setOpenLoginModal}) {
     signUp(email, password)
       .then(() => {
         setIsLoading(false);
-        toast.success(SUCCESS_REGISTRATION_MESSAGE,
-        RegistrationToastObj)
+        toast.success(SUCCESS_REGISTRATION_MESSAGE, RegistrationToastObj)
         handleCloseModal();
-      }).catch(() => {
+      }).catch((error) => {
         setIsLoading(false);
-        toast.error(ERROR_REGISTRATION_MESSAGE, RegistrationToastObj)
+        const errorMessage = error.message;
+        toast.error(errorMessage, RegistrationToastObj)
       });
-
   }
   const RegisterField = (
     <Fragment>
@@ -53,7 +51,6 @@ function RegisterUser({openModal, setOpenModal, setOpenLoginModal}) {
                     variant="standard"
                     sx={{ mb: 3}}
                 />
-    
                 <TextField
                     id="standard-basic"
                     label="Password"

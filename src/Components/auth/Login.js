@@ -10,29 +10,38 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Modal } from '@mui/material';
 import LoadingBackDrop from '../LoadingBackDrop';
 import { boxModalStyle } from './authStyles';
-import { ERROR_LOGIN_MESSAGE, RegistrationToastObj } from '../../utilis/constants';
+import { RegistrationToastObj } from '../../utilis/constants';
 import { toast } from 'react-toastify';
+import { useDispatch } from "react-redux";
+import { addUser } from '../../redux/reducers/userReducer';
 
 
 function Login({openModal, setOpenModal, setOpenRegisterModal}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useDispatch();
    
     const handleCloseModal = () => setOpenModal(!openModal);
     const handleRegisterModal = () => {
         setOpenModal(!openModal);
         setOpenRegisterModal(openModal);
     }
-    const handleSignIn = () => {
+    const handleSignIn = (event) => {
+        event.preventDefault();
         setIsLoading(true);
         signIn(email, password)
-            .then(() =>{
+            .then((credentials) =>{
                 setIsLoading(false);
+                const user = credentials.user;
+                dispatch(addUser({
+                    userInfo: user.email
+                }))
                 handleCloseModal();
             }).catch((error) => {
                 setIsLoading(false);
-                toast.error(ERROR_LOGIN_MESSAGE, RegistrationToastObj)
+                const errorMessage = error.message;
+                toast.error(errorMessage, RegistrationToastObj)
             })
     }
 

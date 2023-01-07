@@ -1,15 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
 import SimpleImageSlider from "react-simple-image-slider";
-import { Navigation, Pagination } from 'swiper';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import "../styles/sliders.css";
-import 'swiper/scss';
+
+import Swiper from "react-id-swiper";
+
 
 
 function HomeSpecials() {
@@ -32,7 +28,7 @@ function HomeSpecials() {
           />
           <FeaturedBrands>
             <FeaturedBrandText>Featured Brands</FeaturedBrandText>
-            
+             
           </FeaturedBrands>
         </Sliders>
        
@@ -61,6 +57,7 @@ export const DecemberSpecial = styled.div`
 const SpecialOrderingContainer = styled.div`
   margin-left: 20px;
 `;
+
 const DezemberImage = styled.img`
   
 `;
@@ -72,16 +69,6 @@ const FeaturedBrandText = styled.h2`
   margin: 24px 0 4px
 `
 const Sliders = styled.div``
-const TruckBackground = styled.div`
-  background: #7fc7f5;
-  border-radius: 50%;
-  position: absolute;
-  height: 140px;
-  left: -60px;
-  top:50%;
-  transform: translateY(-50%);
-  width: 140px;
-`;
 
 const TruckImage = styled.img`
   position: absolute;

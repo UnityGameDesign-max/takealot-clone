@@ -39,15 +39,14 @@ const Count = styled.span`
     font-size: 14px;
 `;
 const ProductImage = styled.img`
-    height: auto;
-    max-height: 130px;
-    width: auto;
-    max-width: 130px;
+    width: 180px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
 `;
 
 const PriceContainer = styled.div`
-position: absolute;
-    bottom: 20px;
+    position: absolute;
+    bottom: 16px;
 `;
 
 const ProductDescription = styled.p`

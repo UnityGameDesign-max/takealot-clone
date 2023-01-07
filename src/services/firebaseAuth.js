@@ -6,8 +6,6 @@ export const signIn = async (email, password) => {
     return userLogin;
 }
 
-
-
 export const signUp = async (email, password) => {
     const registerUser = await createUserWithEmailAndPassword(auth, email, password);
     return registerUser;

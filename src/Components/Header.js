@@ -8,13 +8,20 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import CovidUpdatesHeader from "./CovidUpdatesHeader";
 import RegisterUser from "./auth/RegisterUser";
-
+import { useSelector, useDispatch } from "react-redux";
+import { removeUser } from "../redux/reducers/userReducer";
 
 function Header() {
 
+  const userInfo = useSelector(state => state.userReducer.user.user?.userInfo);
+  console.log(userInfo);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
+  const dispatch = useDispatch();
 
+  const SignOut = () => {
+    dispatch(removeUser(userInfo))
+  }
   return (
     <Fragment>
       <CovidUpdatesHeader />
@@ -29,8 +36,18 @@ function Header() {
         </NavBarLeft>
         <NavBarRight>
           <ul>
-            <HeaderLink onClick={() => setOpenLoginModal(true)} to='/'>Login</HeaderLink>
-            <HeaderLink onClick={() => setOpenRegisterModal(true)} to='/'>Register</HeaderLink>
+            {userInfo ?
+              <React.Fragment>
+                <Greeting>Hi {userInfo}</Greeting>
+                <HeaderLink onClick={() => SignOut()}>(that's not me)</HeaderLink>
+                <HeaderLink onClick={() => SignOut()}>Logout</HeaderLink>
+              </React.Fragment>
+              :
+            <React.Fragment>
+              <HeaderLink onClick={() => setOpenLoginModal(true)} to='/'>Login</HeaderLink>
+              <HeaderLink onClick={() => setOpenRegisterModal(true)} to='/'>Register</HeaderLink>
+            </React.Fragment>
+            }
             <HeaderLink to='/'>Orders</HeaderLink>
             <HeaderLink to="/account">My Account</HeaderLink>
             <WishListIcon as="a" href="/">
@@ -61,7 +78,11 @@ const FavIcon = styled(HeartFill)`
   color: white;
   width: 14px;
 `;
-
+const Greeting = styled.p`
+  font-size: 13px;
+  font-weight: 300;
+  color: #4d4d4f;
+`;
 const CartIcon = styled.div`
   display: flex;
   align-items: center;
