@@ -11,6 +11,7 @@ export const RegistrationToastObj = {
     closeOnClick: true,
     theme: "colored",
 }
+export const SUCCESS_LOGOUT = "Successfully logged out!";
 
 export const errorRegistrationToastObj = {
     position: "top-right",

@@ -10,6 +10,8 @@ import CovidUpdatesHeader from "./CovidUpdatesHeader";
 import RegisterUser from "./auth/RegisterUser";
 import { useSelector, useDispatch } from "react-redux";
 import { removeUser } from "../redux/reducers/userReducer";
+import { RegistrationToastObj, SUCCESS_LOGOUT } from "../utilis/constants";
+import { toast } from "react-toastify";
 
 function Header() {
 
@@ -21,6 +23,7 @@ function Header() {
 
   const SignOut = () => {
     dispatch(removeUser(userInfo))
+    toast.success(SUCCESS_LOGOUT, RegistrationToastObj);
   }
   return (
     <Fragment>
