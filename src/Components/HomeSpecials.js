@@ -4,7 +4,6 @@ import SimpleImageSlider from "react-simple-image-slider";
 
 
 
-import Swiper from "react-id-swiper";
 
 
 

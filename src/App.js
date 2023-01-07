@@ -9,7 +9,7 @@ import ProductCategory from './Components/products/ProductCategory';
 import "swiper/css/bundle";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ProductView from './Components/products/ProductView';
 
 function App() {
   return (
@@ -25,7 +25,8 @@ function App() {
           </React.Fragment>
           } 
         />
-          <Route exact path="/" element={<AuthenticationModal />}></Route>
+          <Route exact path="#" element={<AuthenticationModal />}></Route>
+          <Route exact path="/:category/:id" element={<ProductView />}></Route>
         </Routes>
         <ToastContainer />
       </div>

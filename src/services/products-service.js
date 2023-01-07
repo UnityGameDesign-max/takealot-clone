@@ -1,4 +1,4 @@
-import { PRODUCTS_API } from "../utilis/constants";
+import { EACH_PRODUCT_API, PRODUCTS_API } from "../utilis/constants";
 
 export const getProductsByCategory = async (category) => {
     const response = await fetch(PRODUCTS_API(category));
@@ -8,3 +8,8 @@ export const getProductsByCategory = async (category) => {
 // export const getProductsByCategory = async () => {
 //     const response = await fetch();
 // }
+
+export const getProductsById = async (productId) => {
+    const response = await fetch(EACH_PRODUCT_API(productId));
+    return response;
+}

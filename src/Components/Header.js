@@ -16,7 +16,6 @@ import { toast } from "react-toastify";
 function Header() {
 
   const userInfo = useSelector(state => state.userReducer.user.user?.userInfo);
-  console.log(userInfo);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const dispatch = useDispatch();
@@ -47,8 +46,8 @@ function Header() {
               </React.Fragment>
               :
             <React.Fragment>
-              <HeaderLink onClick={() => setOpenLoginModal(true)} to='/'>Login</HeaderLink>
-              <HeaderLink onClick={() => setOpenRegisterModal(true)} to='/'>Register</HeaderLink>
+              <HeaderLink onClick={() => setOpenLoginModal(true)} to='#'>Login</HeaderLink>
+              <HeaderLink onClick={() => setOpenRegisterModal(true)} to='#'>Register</HeaderLink>
             </React.Fragment>
             }
             <HeaderLink to='/'>Orders</HeaderLink>
