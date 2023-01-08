@@ -3,13 +3,13 @@ export const headerDepartments = [
         name: "All departments"
     },
     {
-        name: "Baby & Toddler"
+        name: "Jewelery"
     },
     {
-        name: "Beauty"
+        name: "Men's"
     },
     {
-        name: "Books"
+        name: "Hard Drives"
     },
     {
         name: "Cameras"
@@ -24,24 +24,24 @@ export const headerDepartments = [
 
 export const selectorDepartments = [
     {
-        name: "Fresh Fashion",
-        location: "/"
+        name: "Jewelery",
+        location: "#"
     },
     {
-        name: "Loadshedding",
-        location: "/"
+        name: "electronics",
+        location: "#"
     },
     {
-        name: "Summer",
-        location: "/"
+        name: "women's clothing",
+        location: "#"
     },
     {
-        name: "Handmade",
-        location: "/"
+        name: "men's clothing",
+        location: "#"
     },
     {
         name: "Christmas",
-        location: "/"
+        location: "#"
     },
     {
         name: "Clearance",

@@ -17,7 +17,7 @@ function Header() {
 
   const userInfo = useSelector(state => state.userReducer.user?.userInfo);
   const cartInfo = useSelector(state => state.cartReducer?.cart)
-  console.log(userInfo)
+  console.log(cartInfo)
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const dispatch = useDispatch();

@@ -4,8 +4,15 @@ import { ArrowIosDownward } from "@styled-icons/evaicons-solid/ArrowIosDownward"
 import { Search } from "@styled-icons/boxicons-regular/Search";
 import { headerDepartments } from "../utilis/departments";
 import { selectorDepartments } from "../utilis/departments";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Searching() {
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
+  const searchProducts = () => {
+    navigate(`/search/${searchValue}`)
+  }
   return (
     <SearchContainer>
       <SearchItems>
@@ -17,20 +24,22 @@ function Searching() {
         </Departments>
         <SearchRight>
           <SearchProduct>
-            <SearchBar placeholder="Search for products, brands...."></SearchBar>
-            <DropDownSearch>
+            <SearchBar value={searchValue} onChange={(event)=> setSearchValue(event.target.value)} placeholder="Search for products, brands...."></SearchBar>
+            <DropDownSearch value={searchValue} onChange={(event)=> setSearchValue(event.target.value)}>
               {headerDepartments.map(item => {
                 return <option key={item.id}>{item.name}</option>;
               })}
             </DropDownSearch>
-            <SearchButton>
+            <SearchButton onClick={searchProducts}>
               <SearchIcon />
             </SearchButton>
           </SearchProduct>
           <SearchDepartment>
-            {selectorDepartments.map((item)=>{
-              return <NavigationLink href={item.location} key={item.id}>{item.name}</NavigationLink>
-            })}
+            {selectorDepartments.map((item)=>(
+              <NavigationLink to={`/search/${item.name}`} key={item.id}>
+                {item.name}
+              </NavigationLink>
+            ))}
           </SearchDepartment>
         </SearchRight>
       </SearchItems>
@@ -44,7 +53,7 @@ const SearchContainer = styled.div`
     background-color: #0b79bf;
 `;
 
-const NavigationLink = styled.a`
+const NavigationLink = styled(Link)`
   border: none;
   padding: 3px 18px;
   color: #333333;

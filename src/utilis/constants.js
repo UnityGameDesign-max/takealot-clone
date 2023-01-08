@@ -3,6 +3,8 @@ export const PRODUCTS_API = (typeOfCategory) =>
 
 export const EACH_PRODUCT_API = (id) => `https://fakestoreapi.com/products/${id}`;
 
+export const ALL_PRODUCTS_API = 'https://fakestoreapi.com/products';
+
 export const ERROR_REGISTRATION_MESSAGE = 'This account is already registered on takealot-clone';
 export const SUCCESS_REGISTRATION_MESSAGE = 'successful registered a user!';
 export const ERROR_LOGIN_MESSAGE = 'Incorrect Email or Password. Please try again'

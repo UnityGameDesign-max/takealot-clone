@@ -10,6 +10,7 @@ import "swiper/css/bundle";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductView from './Components/products/ProductView';
+import SearchPage from './Components/SearchPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         />
           <Route exact path="#" element={<AuthenticationModal />}></Route>
           <Route exact path="/:category/:id" element={<ProductView />}></Route>
+          <Route exact path="/search/:searchValue?" element={<SearchPage />}></Route>
         </Routes>
         <ToastContainer />
       </div>
