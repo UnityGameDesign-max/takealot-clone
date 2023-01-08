@@ -7,11 +7,14 @@ import {Link, useParams } from 'react-router-dom';
 import { getProductsById } from '../../services/products-service';
 import StarIcon from '@mui/icons-material/Star';
 import { CartFill } from "@styled-icons/bootstrap/CartFill";
-import { Divider } from '@mui/material';
+import { Divider, Skeleton } from '@mui/material';
+import { incrementCart } from '../../redux/reducers/cartReducer';
+import { useDispatch } from 'react-redux';
 
 function ProductView() {
-    const [productView, setProductView] = useState({});
 
+    const [productView, setProductView] = useState({});
+    const dispatch = useDispatch();
     const productParameters = useParams();
     const productId = productParameters.id;
     useEffect(() => {
@@ -20,70 +23,129 @@ function ProductView() {
             .then(product => setProductView(product))
     },[productId])
     console.log(productView);
+
+    const AddItemsToCartCount = () => {
+        dispatch(incrementCart({
+            cart: 0,
+            id: productId
+        }));
+    }
+
+    const isProductViewEmpty = (product) => {
+        return Object.keys(product).length === 0;
+    }
   return (
     <React.Fragment>
         <Header />
         <Searching />
         <ProductViewingContainer>
-            <ProductContainer>
-                <ProductItem>
-                    
-                    <ProductItemImage src={productView.image} alt="product-view-img"></ProductItemImage>
-                    
-                    <ProductTextContainer>
-                        <ProductItemText>{productView.title}</ProductItemText>
-                        <ProductRate>
-                            <StarIcon sx={{ width: 18, color: 'gold', mr: 1 }}/>
-                            <Rating>{productView.rating?.rate}</Rating>
-                        </ProductRate>
+            {!isProductViewEmpty(productView) ? 
+                <ProductContainer>
+                    <ProductItem>
+                        
+                        <ProductItemImage src={productView.image} alt="product-view-img"></ProductItemImage>
+                        
+                        <ProductTextContainer>
+                            <ProductItemText>{productView.title}</ProductItemText>
+                            <ProductRate>
+                                <StarIcon sx={{ width: 18, color: 'gold', mr: 1 }}/>
+                                <Rating>{productView.rating?.rate}</Rating>
+                            </ProductRate>
 
-                        <Divider />
-                        <ShippingDetails>
-                            <ShippingText>Ships in 5 - 7 working days</ShippingText>
-                            <Rating>
-                                Sold By
-                                <FullFillText>Takealot-clone</FullFillText>
-                            </Rating>
-                        </ShippingDetails>
-                        <Divider />
-                        <ul>
-                            <ListItems>Eligible for next-day delivery or collection.</ListItems>
-                            <ListItems>Eligible for Cash on Delivery</ListItems>
-                            <ListItems>Hassle-Free Exchanges & Returns for 30 Days</ListItems>
-                            <ListItems>6-Month Limited Warranty.</ListItems>
-                        </ul>
-                    </ProductTextContainer>
-                    
-                </ProductItem>
-                <ProductPriceContainer>
-                    <OrderPriceCard>
-                        <Price>R {productView.price}</Price>
-                        <eBucks>eB2,990 Discovery Miles 2,990</eBucks>
-                        <AddCart>
-                            <BasketIcon />
-                            Add to Cart
-                        </AddCart>
-                        <AddWishList>
-                            <FavIcon />
-                            Add to List
-                        </AddWishList>
-                    </OrderPriceCard>
-                    <AdCard>
-                        <img width="100%" src="https://tpc.googlesyndication.com/simgad/1405391094094514089" alt="ad-order-product"/>
-                    </AdCard>
-                </ProductPriceContainer>
-            </ProductContainer>
-            
+                            <Divider />
+                            <ShippingDetails>
+                                <ShippingText>Ships in 5 - 7 working days</ShippingText>
+                                <Rating>
+                                    Sold By
+                                    <FullFillText>Takealot-clone</FullFillText>
+                                </Rating>
+                            </ShippingDetails>
+                            <Divider />
+                            <ul>
+                                <ListItems>Eligible for next-day delivery or collection.</ListItems>
+                                <ListItems>Eligible for Cash on Delivery</ListItems>
+                                <ListItems>Hassle-Free Exchanges & Returns for 30 Days</ListItems>
+                                <ListItems>6-Month Limited Warranty.</ListItems>
+                            </ul>
+                        </ProductTextContainer>
+                        
+                    </ProductItem>
+                    <ProductPriceContainer>
+                        <OrderPriceCard>
+                            <Price>R {productView.price}</Price>
+                            <Bucks>eB2,990 Discovery Miles 2,990</Bucks>
+                            <AddCart onClick={AddItemsToCartCount}>
+                                <BasketIcon />
+                                Add to Cart
+                            </AddCart>
+                            <AddWishList>
+                                <FavIcon />
+                                Add to List
+                            </AddWishList>
+                        </OrderPriceCard>
+                        <AdCard>
+                            <img width="100%" src="https://tpc.googlesyndication.com/simgad/1405391094094514089" alt="ad-order-product"/>
+                        </AdCard>
+                    </ProductPriceContainer>
+                </ProductContainer>
+                :
+
+                <React.Fragment>
+                    <SkeletonContainer>
+                        <SkeletonProductContainer>
+                            <Skeleton sx={{mr: 2}} variant="rectangular" width={"100%"} height={470}/>
+                            <SkeletonText>
+                                <Skeleton variant='text' sx={{mb:1}} width={"80%"} height={30}/>
+                                <Skeleton variant='text' sx={{mb:0.4}} width={"60%"} height={20}/>
+                                <Skeleton variant='text' width={"40%"} height={10}/>
+                            </SkeletonText>
+                        </SkeletonProductContainer>
+                        <SkeletonPriceContainer>
+                            <Skeleton variant='text' width={"100%"} height={50}/>
+                            <Skeleton variant='text' sx={{mb:0.1}} width={"100%"} height={50}/>
+                        </SkeletonPriceContainer>
+                    </SkeletonContainer>
+                </React.Fragment>
+            }
         </ProductViewingContainer>
     </React.Fragment>
   )
 }
 
 export default ProductView;
+
 const ProductItemImage = styled.img`
     width: 42%;
     border: 1px solid lightgray;
     padding: 19px 40px;
+`;
+const SkeletonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+const SkeletonText = styled.div`
+    width: 100%;
+`;
+const SkeletonProductContainer = styled.div`
+    display: flex;
+    padding: 20px 12px;
+    background-color: #fff;
+    width: 62%;
+    margin-right: 20px;
+`;
+
+const SkeletonPriceContainer = styled.div`
+    background-color: #fff;
+    width: 19%;
+    padding: 20px 18px;
+    height: 90px;
+`;
+const Bucks = styled.p`
+    font-weight: 500;
+    color: #4d4d4f;
+    font-size: .92308rem;
+    margin: 0;
+    padding-block: 5px;
 `;
 
 const AddCart = styled.button`
@@ -121,18 +183,16 @@ const BasketIcon = styled(CartFill)`
   margin-bottom: 4px;
   color: white;
 `;
-export const eBucks = styled.p`
-    display: block;
-`;
+
 const OrderPriceCard = styled.div`
     background-color: #fff;
     padding: 20px 20px 25px;
-    height: 200px;
+    
 `;
 const Price = styled.span`
     font-weight: bold;
     font-size: 36px;
-    display: inline;
+    display: block;
 `;
 const AdCard = styled.div`
     padding: 3px;

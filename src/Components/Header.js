@@ -15,7 +15,9 @@ import { toast } from "react-toastify";
 
 function Header() {
 
-  const userInfo = useSelector(state => state.userReducer.user.user?.userInfo);
+  const userInfo = useSelector(state => state.userReducer.user?.userInfo);
+  const cartInfo = useSelector(state => state.cartReducer?.cart)
+  console.log(userInfo)
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const dispatch = useDispatch();
@@ -29,7 +31,9 @@ function Header() {
       <CovidUpdatesHeader />
       <NavBar>
         <NavBarLeft>
-          <HeaderLogo></HeaderLogo>
+          <Link to="/">
+            <HeaderLogo></HeaderLogo>
+          </Link>
           {navigationListLeft.map(item => (
             <HeaderLink to={item.location} key={item.id}>
               {item.name}
@@ -57,7 +61,7 @@ function Header() {
             </WishListIcon>
             <CartIcon as="a" href="#">
               <BasketIcon />
-              <BasketCount>{0}</BasketCount>
+              <BasketCount>{cartInfo}</BasketCount>
             </CartIcon>
           </ul>
         </NavBarRight>

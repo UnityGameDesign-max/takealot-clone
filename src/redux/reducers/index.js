@@ -8,6 +8,7 @@ import { persistReducer,FLUSH,
     REGISTER } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 import persistStore from 'redux-persist/es/persistStore';
+import cartReducer from './cartReducer';
 
 const persistConfig = {
     key: 'root',
@@ -15,14 +16,17 @@ const persistConfig = {
 }
 
 const reducers = combineReducers({
-    user: userReducer
+    user: userReducer,
+    cart: cartReducer
 })
 
-const persistedUserReducer = persistReducer(persistConfig, reducers)
+const persistedUserReducer = persistReducer(persistConfig, userReducer);
+const persistedCartReducer = persistReducer(persistConfig, cartReducer);
 
 export const store = configureStore({
     reducer: {
         userReducer: persistedUserReducer,
+        cartReducer: persistedCartReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
