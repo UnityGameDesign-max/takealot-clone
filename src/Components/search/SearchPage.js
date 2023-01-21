@@ -23,17 +23,25 @@ function SearchPage() {
   const isProductSearchEmpty = () => {
     return products.length > 0;
   }
+  const getSearchKeys = (searchKeys, product) => {
+    return product.title.toLowerCase().includes(searchKeys);
+  }
+  const filteredProducts = () => {
+    const filterSearchKey = products.filter((product) => product.title.toLowerCase()?.includes(productSearchView.toLowerCase()) || product.category.toLowerCase()?.includes(productSearchView.toLocaleLowerCase()))
+    return filterSearchKey;
+  }
+
+  console.log(filteredProducts());
       
   return (
     <Fragment>
         <Header />
         <Searching />
         <SearchContainer>
-          <SearchResultsText>{12} results for {"asasa"}</SearchResultsText>
-          <SearchProductCard />
+          <SearchProductCard filterProducts={filteredProducts()} searchKey={productSearchView}/>
         </SearchContainer>
     </Fragment>
-  )
+  );
 }
 export default SearchPage;
 
@@ -43,8 +51,3 @@ const SearchContainer = styled.div`
   height: 100vh;
 `;
 
-const SearchResultsText = styled.p`
-  color: #4d4d4f;
-  font-size: 1.07692rem;
-  font-weight: 500;
-`;

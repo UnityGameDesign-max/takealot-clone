@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import StarIcon from '@mui/icons-material/Star';
 
 function ProductCard({image, description, price, rating, count}) {
+
+    const CONVERSION_RATE = 18;
+    const convertCurrency = (price) => {
+        return (price * CONVERSION_RATE).toFixed(2);
+    }
   return (
     <ProductCardContainer>
         <ProductImage  src={image} alt='product' />
         <ProductDescription>{description}</ProductDescription>
         <PriceContainer>
-            <ProductPrice>R {price}</ProductPrice>
+            <ProductPrice>R {convertCurrency(price)}</ProductPrice>
             <Ratings>
                 <StarIcon sx={{ width: 15, color: 'gold', mr: 1 }}/>
                 <Rate>{rating}</Rate> <Count>({count})</Count>

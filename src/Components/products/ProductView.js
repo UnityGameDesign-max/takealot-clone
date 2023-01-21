@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import Header from '../Header';
-import Searching from '../Searching';
+import Searching from '../search/Searching';
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill";
 import {Link, useParams } from 'react-router-dom';
 import { getProductsById } from '../../services/products-service';
